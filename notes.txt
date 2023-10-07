@@ -1,0 +1,127 @@
+Content:
+
+Async & Await
+Async & Await with Error Handling (Try & Catch Block)
+
+*************************************************************************************************************************
+
+Async and Await
+
+===>it is applicable to the functions.
+    functions க்கு மட்டும் பொருந்தும்.
+
+===>A function can be converted into async function by putting async keyword.
+    ஒரு function ஐ async function ஆக மாற்றி தர பயன்படுத்தும் keyword தான் async ஆகும்.
+    async என்பதை function எழுதுவதற்கு முன்னால் கொடுத்தால் அது async function ஆக மாறிவிடும்.
+
+===>async func always returns a Promise.
+    async function ஆனது Promise ஐ return செய்யும்.
+
+===>to handle the Promise we have await keyword.
+    async function ல் வரும் Promise ஐ handle செய்ய பயன்படுத்தும் keyword "await" ஆகும்.
+
+===>await replacement for the .then
+    .then ஐ replace செய்வது await ஆகும்.
+
+===>await is used inside the async function.
+    async function க்கு உள்ளே தான் await ஐ கொடுக்க வேண்டும்.
+
+===>await helps us to wait until the promise gets resolved.
+    Promise ஆனது resolved ஆகும் வரை நம் கூடவே இருந்து வேலை செய்யும்.
+    அதாவது wait செய்து o/p வழங்கும்.
+    இதற்கு உதவி செய்வது தான் await key ஆகும்.
+
+===>async & await are like twins. Both must be given.
+    async & await ம் twins போன்றது.இரண்டும் கட்டாயம் கொடுக்க வேண்டும்.
+
+===>Example:
+
+    async function foo(){
+        const res =  await fetch("https://restcountries.com/v2/all")
+        const result = await res.json();
+        console.log(result)
+    }
+    foo();
+
+    o/p:
+    (250) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, .....,,,, ]
+
+                ***************************************************************** 
+
+Async & Await with Error Handling (Try & Catch Block)
+
+===>Promise ல் உள்ள அல்லது வரும் error ஐ handle செய்ய பயன்படுத்துவதுதான் .then & .catch ஆகும்.
+இதனை overcome செய்ய புதிதாக உருவாக்கப்பட்டதுதான் try & catch ஆகும்.
+
+===>async function ஐ முதலில் மேலே தர வேண்டும்.
+    code ஐ try block க்குள் தரவேண்டும்.அப்பொழுதுதான் code ஐ test செய்யும்.
+    error வருவதை catch block க்குள் தரவேண்டும்.error ஐ handle செய்யும்.
+    function call ஐ வெளியே தர வேண்டும்.
+
+===>Syntax:
+
+    try {
+
+        //block of codes
+    
+    } 
+    catch (error) {
+
+        //block of codes
+  
+    }
+
+===>Example:
+
+    async function foo(){
+        try {
+            const res =  await fetch("https://restcountries.com/v2/all")
+            const result = await res.json();
+            console.log(result)
+        } catch (error) {
+        console.log(error)
+        }
+    }
+    foo();
+
+    o/p:
+    (250) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, .....,,,, ]
+
+                ***************************************************************** 
+
+===>Session Task
+===>async & await with error handling rest countries manipulate styling
+
+    async function foo(){
+    try {
+        const res = await fetch("https://restcountries.com/v2/all");
+        const data = await res.json();
+        for (let i = 0; i <= data.length; i++) {
+            console.log(data[i]);
+            const div = document.createElement("div");
+
+            div.innerHTML =               //paste the bootstrap grid groups content
+ 
+        `<div class="row row-cols-1 row-cols-md-3 ">
+        <div class="col">
+        <div class="card">
+            <img src="${data[i].flag}" class="card-img-top" alt="restcountries flag images here">
+            <div class="card-body">
+              <h5 class="card-title">${data[i].name}</h5>
+              <p class="card-text"><b><i>Capital: ${data[i].capital}</i></b></p>
+              <p class="card-text"><b><i>Region: ${data[i].region}</i></b></p>
+              <p class="card-text"><b><i>SubRegion: ${data[i].subregion}</i></b></p>
+              <p class="card-text"><b><i>Population: ${data[i].population}</i></b></p>
+            </div>
+        </div>
+        </div>
+        </div>`;
+        document.body.append(div);
+        }  
+        } catch (error) {
+            console.log("Error")
+        }
+        }
+        foo()
+
+*************************************************************************************************************************
